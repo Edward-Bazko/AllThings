@@ -9,12 +9,14 @@
 /* Begin PBXBuildFile section */
 		0BF470BA2475A3AD00A66BA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */; };
 		0BF470BC2475A3AD00A66BA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */; };
-		0BF470BE2475A3AD00A66BA1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470BD2475A3AD00A66BA1 /* ViewController.swift */; };
+		0BF470BE2475A3AD00A66BA1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */; };
 		0BF470C12475A3AD00A66BA1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF470BF2475A3AD00A66BA1 /* Main.storyboard */; };
 		0BF470C42475A3AD00A66BA1 /* AllThings.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470C22475A3AD00A66BA1 /* AllThings.xcdatamodeld */; };
 		0BF470C62475A3AF00A66BA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BF470C52475A3AF00A66BA1 /* Assets.xcassets */; };
 		0BF470C92475A3AF00A66BA1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0BF470C72475A3AF00A66BA1 /* LaunchScreen.storyboard */; };
 		0BF470D42475A3AF00A66BA1 /* AllThingsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470D32475A3AF00A66BA1 /* AllThingsTests.swift */; };
+		0BF470DF2475A4C200A66BA1 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470DE2475A4C200A66BA1 /* CoreDataStack.swift */; };
+		0BF470E12475A66300A66BA1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470E02475A66300A66BA1 /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,7 +33,7 @@
 		0BF470B62475A3AD00A66BA1 /* AllThings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllThings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0BF470BD2475A3AD00A66BA1 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemsViewController.swift; sourceTree = "<group>"; };
 		0BF470C02475A3AD00A66BA1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0BF470C32475A3AD00A66BA1 /* AllThings.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = AllThings.xcdatamodel; sourceTree = "<group>"; };
 		0BF470C52475A3AF00A66BA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -40,6 +42,8 @@
 		0BF470CF2475A3AF00A66BA1 /* AllThingsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AllThingsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF470D32475A3AF00A66BA1 /* AllThingsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllThingsTests.swift; sourceTree = "<group>"; };
 		0BF470D52475A3AF00A66BA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0BF470DE2475A4C200A66BA1 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		0BF470E02475A66300A66BA1 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,11 +64,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0BC15C1E2475AAF000D22DDD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				0BF470BF2475A3AD00A66BA1 /* Main.storyboard */,
+				0BF470C72475A3AF00A66BA1 /* LaunchScreen.storyboard */,
+				0BF470C52475A3AF00A66BA1 /* Assets.xcassets */,
+				0BF470C22475A3AD00A66BA1 /* AllThings.xcdatamodeld */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		0BF470AD2475A3AD00A66BA1 = {
 			isa = PBXGroup;
 			children = (
-				0BF470B82475A3AD00A66BA1 /* AllThings */,
-				0BF470D22475A3AF00A66BA1 /* AllThingsTests */,
+				0BC15C1E2475AAF000D22DDD /* Resources */,
+				0BF470B82475A3AD00A66BA1 /* Sources */,
+				0BF470D22475A3AF00A66BA1 /* Tests */,
 				0BF470B72475A3AD00A66BA1 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -78,28 +94,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0BF470B82475A3AD00A66BA1 /* AllThings */ = {
+		0BF470B82475A3AD00A66BA1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */,
-				0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */,
-				0BF470BD2475A3AD00A66BA1 /* ViewController.swift */,
-				0BF470BF2475A3AD00A66BA1 /* Main.storyboard */,
-				0BF470C52475A3AF00A66BA1 /* Assets.xcassets */,
-				0BF470C72475A3AF00A66BA1 /* LaunchScreen.storyboard */,
 				0BF470CA2475A3AF00A66BA1 /* Info.plist */,
-				0BF470C22475A3AD00A66BA1 /* AllThings.xcdatamodeld */,
+				0BF470E02475A66300A66BA1 /* Item.swift */,
+				0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */,
+				0BF470DE2475A4C200A66BA1 /* CoreDataStack.swift */,
+				0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */,
+				0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */,
 			);
-			path = AllThings;
+			path = Sources;
 			sourceTree = "<group>";
 		};
-		0BF470D22475A3AF00A66BA1 /* AllThingsTests */ = {
+		0BF470D22475A3AF00A66BA1 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				0BF470D32475A3AF00A66BA1 /* AllThingsTests.swift */,
 				0BF470D52475A3AF00A66BA1 /* Info.plist */,
 			);
-			path = AllThingsTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,9 +217,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BF470DF2475A4C200A66BA1 /* CoreDataStack.swift in Sources */,
 				0BF470C42475A3AD00A66BA1 /* AllThings.xcdatamodeld in Sources */,
-				0BF470BE2475A3AD00A66BA1 /* ViewController.swift in Sources */,
+				0BF470BE2475A3AD00A66BA1 /* ItemsViewController.swift in Sources */,
 				0BF470BA2475A3AD00A66BA1 /* AppDelegate.swift in Sources */,
+				0BF470E12475A66300A66BA1 /* Item.swift in Sources */,
 				0BF470BC2475A3AD00A66BA1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +383,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KLA3MMY44C;
-				INFOPLIST_FILE = AllThings/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -384,15 +402,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = KLA3MMY44C;
-				INFOPLIST_FILE = AllThings/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Sources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.edwardbazko.AllThings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -403,9 +425,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KLA3MMY44C;
-				INFOPLIST_FILE = AllThingsTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -425,9 +448,10 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KLA3MMY44C;
-				INFOPLIST_FILE = AllThingsTests/Info.plist;
+				INFOPLIST_FILE = Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
