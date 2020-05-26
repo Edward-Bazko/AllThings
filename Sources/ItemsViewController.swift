@@ -17,17 +17,21 @@ class ItemsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Item", for: indexPath)
         let item = repository.catalogItems[indexPath.row]
-        cell.textLabel?.text = "\(item.timestamp)"
+        cell.textLabel?.text = item.description
         cell.imageView?.image = item.thumbnail
         return cell
     }
     
     private func onImagePicked(_ originalImage: UIImage) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .medium
+        formatter.timeStyle = .short
+        
         let item = Item()
-        let thumbSize = originalImage.size.resized(to: CGSize(width: 40, height: 40), ratio: .aspectFill)
+        let thumbSize = originalImage.size.resized(to: CGSize(width: 80, height: 80), ratio: .aspectFill)
         item.originalImage = originalImage
         item.thumbnail = originalImage.resized(to: thumbSize)
-        item.description = ""
+        item.description = formatter.string(from: item.timestamp)
         repository.insert(item)
         tableView.reloadData()
     }

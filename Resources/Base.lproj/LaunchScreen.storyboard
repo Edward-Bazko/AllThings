@@ -16,7 +16,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All Things" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pk7-5m-IVd">
-                                <rect key="frame" x="100" y="244" width="214" height="93"/>
+                                <rect key="frame" x="100" y="244" width="214" height="41"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
                                 <nil key="textColor"/>
@@ -25,7 +25,6 @@
                         </subviews>
                         <color key="backgroundColor" cyan="0.2271204792881665" magenta="0.0" yellow="0.0" black="0.0" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Pk7-5m-IVd" secondAttribute="bottom" constant="525" id="F9L-Zv-jKA"/>
                             <constraint firstItem="Pk7-5m-IVd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="200" id="FLN-65-D0n"/>
                             <constraint firstItem="Pk7-5m-IVd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="IPf-LC-Hn7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Pk7-5m-IVd" secondAttribute="trailing" constant="100" id="cPB-g6-1C6"/>
