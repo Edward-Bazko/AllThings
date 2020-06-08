@@ -13,6 +13,8 @@
 		0B530B06247D5B0B0055501A /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B02247D5B0B0055501A /* Geometry.swift */; };
 		0B530B08247D62A50055501A /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B07247D62A50055501A /* ServiceContainer.swift */; };
 		0B530B09247D62A50055501A /* ServiceContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B07247D62A50055501A /* ServiceContainer.swift */; };
+		0B627621248ECE6300674F50 /* AddItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B627620248ECE6300674F50 /* AddItemViewController.swift */; };
+		0B627624248ED34D00674F50 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B627623248ED34D00674F50 /* ViewExtensions.swift */; };
 		0BF470BA2475A3AD00A66BA1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */; };
 		0BF470BC2475A3AD00A66BA1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */; };
 		0BF470BE2475A3AD00A66BA1 /* ItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */; };
@@ -37,6 +39,8 @@
 		0B530B01247D5B0B0055501A /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		0B530B02247D5B0B0055501A /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		0B530B07247D62A50055501A /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
+		0B627620248ECE6300674F50 /* AddItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddItemViewController.swift; sourceTree = "<group>"; };
+		0B627623248ED34D00674F50 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		0BF470B62475A3AD00A66BA1 /* AllThings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AllThings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +73,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B627622248ED30C00674F50 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0B530B02247D5B0B0055501A /* Geometry.swift */,
+				0B530B01247D5B0B0055501A /* ImageExtensions.swift */,
+				0B627623248ED34D00674F50 /* ViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		0BC15C1E2475AAF000D22DDD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,14 +115,14 @@
 		0BF470B82475A3AD00A66BA1 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				0B530B02247D5B0B0055501A /* Geometry.swift */,
-				0B530B01247D5B0B0055501A /* ImageExtensions.swift */,
-				0BF470CA2475A3AF00A66BA1 /* Info.plist */,
+				0B627622248ED30C00674F50 /* Extensions */,
 				0B530B07247D62A50055501A /* ServiceContainer.swift */,
 				0BF470E02475A66300A66BA1 /* Item.swift */,
 				0BF470B92475A3AD00A66BA1 /* AppDelegate.swift */,
 				0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */,
 				0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */,
+				0B627620248ECE6300674F50 /* AddItemViewController.swift */,
+				0BF470CA2475A3AF00A66BA1 /* Info.plist */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -227,7 +241,9 @@
 				0B530B05247D5B0B0055501A /* Geometry.swift in Sources */,
 				0B530B08247D62A50055501A /* ServiceContainer.swift in Sources */,
 				0BF470BE2475A3AD00A66BA1 /* ItemsViewController.swift in Sources */,
+				0B627624248ED34D00674F50 /* ViewExtensions.swift in Sources */,
 				0BF470BA2475A3AD00A66BA1 /* AppDelegate.swift in Sources */,
+				0B627621248ECE6300674F50 /* AddItemViewController.swift in Sources */,
 				0BF470E12475A66300A66BA1 /* Item.swift in Sources */,
 				0BF470BC2475A3AD00A66BA1 /* SceneDelegate.swift in Sources */,
 			);

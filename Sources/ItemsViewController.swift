@@ -37,6 +37,11 @@ class ItemsViewController: UITableViewController {
     }
     
     @objc private func addItem() {
+        let vc = AddItemViewController()
+        present(vc, animated: true, completion: nil)
+    }
+    
+    @objc private func _addItem() {
         let picker = UIImagePickerController()
         if UIImagePickerController.isSourceTypeAvailable(.camera) {
             picker.sourceType = .camera
