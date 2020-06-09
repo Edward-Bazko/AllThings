@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B490C26248FE75E005759F2 /* PhotoCaptureDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B490C25248FE75E005759F2 /* PhotoCaptureDelegate.swift */; };
 		0B530B03247D5B0B0055501A /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B01247D5B0B0055501A /* ImageExtensions.swift */; };
 		0B530B04247D5B0B0055501A /* ImageExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B01247D5B0B0055501A /* ImageExtensions.swift */; };
 		0B530B05247D5B0B0055501A /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B530B02247D5B0B0055501A /* Geometry.swift */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0B490C25248FE75E005759F2 /* PhotoCaptureDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCaptureDelegate.swift; sourceTree = "<group>"; };
 		0B530B01247D5B0B0055501A /* ImageExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageExtensions.swift; sourceTree = "<group>"; };
 		0B530B02247D5B0B0055501A /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		0B530B07247D62A50055501A /* ServiceContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceContainer.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 				0BF470BB2475A3AD00A66BA1 /* SceneDelegate.swift */,
 				0BF470BD2475A3AD00A66BA1 /* ItemsViewController.swift */,
 				0B627620248ECE6300674F50 /* AddItemViewController.swift */,
+				0B490C25248FE75E005759F2 /* PhotoCaptureDelegate.swift */,
 				0BF470CA2475A3AF00A66BA1 /* Info.plist */,
 			);
 			path = Sources;
@@ -245,6 +248,7 @@
 				0BF470BA2475A3AD00A66BA1 /* AppDelegate.swift in Sources */,
 				0B627621248ECE6300674F50 /* AddItemViewController.swift in Sources */,
 				0BF470E12475A66300A66BA1 /* Item.swift in Sources */,
+				0B490C26248FE75E005759F2 /* PhotoCaptureDelegate.swift in Sources */,
 				0BF470BC2475A3AD00A66BA1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

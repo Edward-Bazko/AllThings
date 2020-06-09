@@ -8,7 +8,10 @@ class AddItemViewController: UIViewController {
     private var setupResult: SessionSetupResult = .success { didSet { print("setupResult: \(setupResult)") }}
     private var videoDeviceInput: AVCaptureDeviceInput!
     private let photoOutput = AVCapturePhotoOutput()
+    private var inProgressPhotoCaptureDelegates = [Int64: PhotoCaptureProcessor]()
 
+    
+    private var capturedImage: UIImage?
     private var previewView: PreviewView!
     
     private enum SessionSetupResult {
@@ -25,6 +28,7 @@ class AddItemViewController: UIViewController {
         previewView = PreviewView().autolayout()
         previewView.session = session
         previewView.backgroundColor = .black
+        previewView.captureButton.addTarget(self, action: #selector(captureButtonPress), for: .touchUpInside)
         view.addSubview(previewView)
         
         NSLayoutConstraint.activate([
@@ -132,8 +136,6 @@ class AddItemViewController: UIViewController {
         return view.window?.windowScene?.interfaceOrientation ?? .unknown
     }
     
-    //
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -188,37 +190,11 @@ class AddItemViewController: UIViewController {
         let keyValueObservation = session.observe(\.isRunning, options: .new) { _, change in
             guard let isSessionRunning = change.newValue else { return }
             DispatchQueue.main.async {
-                // Only enable the ability to change camera if the device has more than one camera.
-//                self.cameraButton.isEnabled = isSessionRunning
+                self.previewView.captureButton.isEnabled = isSessionRunning
                 print("isSessionRunning: \(isSessionRunning)")
             }
         }
         keyValueObservations.append(keyValueObservation)
-        
-//        let systemPressureStateObservation = observe(\.videoDeviceInput.device.systemPressureState, options: .new) { _, change in
-//            guard let systemPressureState = change.newValue else { return }
-//            self.setRecommendedFrameRateRangeForPressureState(systemPressureState: systemPressureState)
-//        }
-//        keyValueObservations.append(systemPressureStateObservation)
-        
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(subjectAreaDidChange),
-//                                               name: .AVCaptureDeviceSubjectAreaDidChange,
-//                                               object: videoDeviceInput.device)
-//
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(sessionRuntimeError),
-//                                               name: .AVCaptureSessionRuntimeError,
-//                                               object: session)
-//
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(sessionWasInterrupted),
-//                                               name: .AVCaptureSessionWasInterrupted,
-//                                               object: session)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(sessionInterruptionEnded),
-//                                               name: .AVCaptureSessionInterruptionEnded,
-//                                               object: session)
     }
     
     private func removeObservers() {
@@ -241,11 +217,72 @@ class AddItemViewController: UIViewController {
         
         super.viewWillDisappear(animated)
     }
-    
+ 
+    @objc private func captureButtonPress() {
+        let videoPreviewLayerOrientation = previewView.videoPreviewLayer.connection?.videoOrientation
+        sessionQueue.async {
+            if let photoOutputConnection = self.photoOutput.connection(with: .video) {
+                photoOutputConnection.videoOrientation = videoPreviewLayerOrientation!
+            }
+            var photoSettings = AVCapturePhotoSettings()
+                        
+            if self.photoOutput.availablePhotoCodecTypes.contains(.hevc) {
+                photoSettings = AVCapturePhotoSettings(format: [AVVideoCodecKey: AVVideoCodecType.hevc])
+            }
+            
+            if self.videoDeviceInput.device.isFlashAvailable {
+                photoSettings.flashMode = .auto
+            }
+            
+            photoSettings.isHighResolutionPhotoEnabled = true
+            if !photoSettings.__availablePreviewPhotoPixelFormatTypes.isEmpty {
+                photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: photoSettings.__availablePreviewPhotoPixelFormatTypes.first!]
+            }
+            
+            let photoCaptureProcessor = PhotoCaptureProcessor(with: photoSettings, completionHandler: { processor, data in
+                self.inProgressPhotoCaptureDelegates[processor.requestedPhotoSettings.uniqueID] = nil
+                if let data = data {
+                    self.capturedImage = UIImage(data: data)
+                }
+                
+                // Flash the screen to signal that AVCam took a photo.
+                DispatchQueue.main.async {
+                    self.previewView.videoPreviewLayer.opacity = 0
+                    UIView.animate(withDuration: 0.25) {
+                        self.previewView.videoPreviewLayer.opacity = 1
+                    }
+                }
+            })
+                    
+            self.inProgressPhotoCaptureDelegates[photoCaptureProcessor.requestedPhotoSettings.uniqueID] = photoCaptureProcessor
+            self.photoOutput.capturePhoto(with: photoSettings, delegate: photoCaptureProcessor)
+        }
+    }
 }
 
 
 class PreviewView: UIView {
+    
+    let captureButton: UIButton
+    
+    init() {
+        captureButton = UIButton(type: .custom).autolayout()
+        super.init(frame: .zero)
+        
+        captureButton.setImage(UIImage(named: "CapturePhoto"), for: .normal)
+        
+        addSubview(captureButton)
+        NSLayoutConstraint.activate([
+            captureButton.centerXAnchor.constraint(equalTo: centerXAnchor),
+            captureButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            captureButton.widthAnchor.constraint(equalToConstant: 50),
+            captureButton.heightAnchor.constraint(equalToConstant: 50)
+        ])
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
     
     var videoPreviewLayer: AVCaptureVideoPreviewLayer {
         guard let layer = layer as? AVCaptureVideoPreviewLayer else {
