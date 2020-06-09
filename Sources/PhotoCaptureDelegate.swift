@@ -36,30 +36,26 @@ extension PhotoCaptureProcessor: AVCapturePhotoCaptureDelegate {
             return
         }
         
-        guard let photoData = photoData else {
-            print("No photo data resource")
-            didFinish()
-            return
-        }
+        didFinish()
         
-        PHPhotoLibrary.requestAuthorization { status in
-            if status == .authorized {
-                PHPhotoLibrary.shared().performChanges({
-                    let options = PHAssetResourceCreationOptions()
-                    let creationRequest = PHAssetCreationRequest.forAsset()
-                    options.uniformTypeIdentifier = self.requestedPhotoSettings.processedFileType.map { $0.rawValue }
-                    creationRequest.addResource(with: .photo, data: photoData, options: options)
-                    
-                }, completionHandler: { _, error in
-                    if let error = error {
-                        print("Error occurred while saving photo to photo library: \(error)")
-                    }
-                    
-                    self.didFinish()
-                })
-            } else {
-                self.didFinish()
-            }
-        }
+//        PHPhotoLibrary.requestAuthorization { status in
+//            if status == .authorized {
+//                PHPhotoLibrary.shared().performChanges({
+//                    let options = PHAssetResourceCreationOptions()
+//                    let creationRequest = PHAssetCreationRequest.forAsset()
+//                    options.uniformTypeIdentifier = self.requestedPhotoSettings.processedFileType.map { $0.rawValue }
+//                    creationRequest.addResource(with: .photo, data: photoData, options: options)
+//
+//                }, completionHandler: { _, error in
+//                    if let error = error {
+//                        print("Error occurred while saving photo to photo library: \(error)")
+//                    }
+//
+//                    self.didFinish()
+//                })
+//            } else {
+//                self.didFinish()
+//            }
+//        }
     }
 }

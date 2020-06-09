@@ -7,7 +7,7 @@ class ItemsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Item")
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addItem))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(showAddItem))
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -22,44 +22,25 @@ class ItemsViewController: UITableViewController {
         return cell
     }
     
-    private func onImagePicked(_ originalImage: UIImage) {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .medium
-        formatter.timeStyle = .short
-        
+    private func addItem(_ originalImage: UIImage, caption: String) {
         let item = Item()
         let thumbSize = originalImage.size.resized(to: CGSize(width: 80, height: 80), ratio: .aspectFill)
         item.originalImage = originalImage
         item.thumbnail = originalImage.resized(to: thumbSize)
-        item.description = formatter.string(from: item.timestamp)
+        item.description = caption
         repository.insert(item)
         tableView.reloadData()
     }
     
-    @objc private func addItem() {
+    @objc private func showAddItem() {
         let vc = AddItemViewController()
-        present(vc, animated: true, completion: nil)
-    }
-    
-    @objc private func _addItem() {
-        let picker = UIImagePickerController()
-        if UIImagePickerController.isSourceTypeAvailable(.camera) {
-            picker.sourceType = .camera
+        vc.doneHandler = { [unowned self, vc] in
+            if let image = vc.capturedImage {
+                self.addItem(image, caption: vc.caption)
+                vc.dismiss(animated: true, completion: nil)
+            }
         }
-        picker.delegate = self
-        present(picker, animated: true, completion: nil)
-    }
-}
-
-extension ItemsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        if let image = info[.originalImage] as? UIImage {
-            self.onImagePicked(image)
-            picker.dismiss(animated: true, completion: nil)
-        }
-    }
-    
-    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        picker.dismiss(animated: true, completion: nil)
+        let nc = UINavigationController(rootViewController: vc)
+        present(nc, animated: true, completion: nil)
     }
 }

@@ -9,10 +9,18 @@ class AddItemViewController: UIViewController {
     private var videoDeviceInput: AVCaptureDeviceInput!
     private let photoOutput = AVCapturePhotoOutput()
     private var inProgressPhotoCaptureDelegates = [Int64: PhotoCaptureProcessor]()
+    private let previewView = PreviewView().autolayout()
+    private let textView = UITextView().autolayout()
 
-    
-    private var capturedImage: UIImage?
-    private var previewView: PreviewView!
+    var doneHandler: () -> () = { }
+    var capturedImage: UIImage? {
+        didSet {
+            navigationItem.leftBarButtonItem?.isEnabled = capturedImage != nil
+        }
+    }
+    var caption: String {
+        return textView.text ?? ""
+    }
     
     private enum SessionSetupResult {
         case success
@@ -23,12 +31,8 @@ class AddItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
-        
-        previewView = PreviewView().autolayout()
-        previewView.session = session
-        previewView.backgroundColor = .black
-        previewView.captureButton.addTarget(self, action: #selector(captureButtonPress), for: .touchUpInside)
+        view.backgroundColor = .lightGray
+        setupPreviewView()
         view.addSubview(previewView)
         
         NSLayoutConstraint.activate([
@@ -37,6 +41,41 @@ class AddItemViewController: UIViewController {
             previewView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             previewView.heightAnchor.constraint(equalTo: view.widthAnchor) ])
         
+        requestAuthorizarion()
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(donePressed))
+        navigationItem.leftBarButtonItem?.isEnabled = false
+        
+        navigationController?.navigationBar.standardAppearance.backgroundColor = .clear
+        navigationController?.navigationBar.standardAppearance.backgroundEffect = .none
+        navigationController?.navigationBar.standardAppearance.shadowColor = .clear
+        
+        view.addSubview(textView)
+        textView.text = "test"
+        textView.font = UIFont.preferredFont(forTextStyle: .headline)
+        NSLayoutConstraint.activate([
+            textView.topAnchor.constraint(equalTo: previewView.bottomAnchor, constant: 8),
+            textView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            textView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            textView.heightAnchor.constraint(equalToConstant: 50)
+        ])
+        
+        sessionQueue.async {
+            self.configureSession()
+        }
+    }
+    
+    @objc private func donePressed() {
+        doneHandler()
+    }
+    
+    private func setupPreviewView() {
+        previewView.session = session
+        previewView.backgroundColor = .black
+        previewView.captureButton.addTarget(self, action: #selector(captureButtonPress), for: .touchUpInside)
+    }
+    
+    private func requestAuthorizarion() {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             break
@@ -52,10 +91,6 @@ class AddItemViewController: UIViewController {
             
         default:
             setupResult = .notAuthorized
-        }
-        
-        sessionQueue.async {
-            self.configureSession()
         }
     }
     

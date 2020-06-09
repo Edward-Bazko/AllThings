@@ -76,8 +76,10 @@ class ItemRepository {
         items.sort { (lhs, rhs) -> Bool in
             return lhs.timestamp.timeIntervalSinceReferenceDate > rhs.timestamp.timeIntervalSinceReferenceDate
         }
-        do { try save() }
-        catch { debugPrint("Failed to save items: \(error)") }
+        DispatchQueue.global().async {
+            do { try self.save() }
+            catch { debugPrint("Failed to save items: \(error)") }
+        }
     }
     
     var catalogItems: [Item] {
