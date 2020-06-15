@@ -1,7 +1,7 @@
 Home Content
 ============
 
-![logo](HomeContent.png)
+![logo](01-HomeContentIcon.png)
 ![](01-HomeContent.jpg)
 AppStore: https://apps.apple.com/us/app/home-contents/id420151922
 
